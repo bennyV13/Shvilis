@@ -9,9 +9,9 @@
 
 ## Phase 2: Dynamic Generation Engine and Rule Utilities
 
-- [ ] Task: Implement dynamic rule calculator and checklist generators
-    - [ ] Write unit tests for weather, duration, group size, and terrain rule matching
-    - [ ] Implement rule processing logic that outputs a combined list of default and custom items
+- [x] Task: Implement dynamic rule calculator and checklist generators [e986984]
+    - [x] Write unit tests for weather, duration, group size, and terrain rule matching
+    - [x] Implement rule processing logic that outputs a combined list of default and custom items
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Dynamic Generation Engine and Rule Utilities' (Protocol in workflow.md)
 
 ## Phase 3: React Checklist UI Components
