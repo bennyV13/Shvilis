@@ -11,11 +11,11 @@
 - [x] Task: Verify unit tests pass and code coverage meets requirements (>80%) (dc9b317)
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Sentry Client Initialization' (Protocol in workflow.md) (965e027)
 
-## Phase 3: Error Boundary & Integration [checkpoint: ]
-- [ ] Task: Write failing tests verifying the presence of Sentry's ErrorBoundary in the React component tree
-- [ ] Task: Wrap the main application component in Sentry's ErrorBoundary inside `src/App.tsx`
-- [ ] Task: Verify that all tests pass and meet coverage requirements
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Error Boundary & Integration' (Protocol in workflow.md)
+## Phase 3: Error Boundary & Integration [checkpoint: ab047dc]
+- [x] Task: Write failing tests verifying the presence of Sentry's ErrorBoundary in the React component tree (a9fa7f7)
+- [x] Task: Wrap the main application component in Sentry's ErrorBoundary inside `src/App.tsx` (a9fa7f7)
+- [x] Task: Verify that all tests pass and meet coverage requirements (a9fa7f7)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Error Boundary & Integration' (Protocol in workflow.md) (ab047dc)
 
 ## Phase 4: Vite Plugin Configuration & QA Check [checkpoint: ]
 - [ ] Task: Add `@sentry/vite-plugin` integration and enable sourcemaps in `vite.config.ts`
