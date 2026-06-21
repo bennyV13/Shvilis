@@ -17,10 +17,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Gear Weight Optimizer**
   *Link: [./tracks/weight_optimizer_20260621/](./tracks/weight_optimizer_20260621/)*
 
----
 
-- [x] **Track: Sentry Integration**
-  *Link: [./tracks/sentry_integration_20260621/](./tracks/sentry_integration_20260621/)*
 
 
 
