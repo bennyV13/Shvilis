@@ -7,12 +7,12 @@
     - [x] Implement data structures (isWorn, isConsumable on ChecklistItem) and core utility calculators
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Domain Extensions and Weight Calculation Utilities' (Protocol in workflow.md) [5983a1b]
 
-## Phase 2: React Weight Dashboard and Breakdown Chart
+## Phase 2: React Weight Dashboard and Breakdown Chart [checkpoint: d8b680a]
 
 - [x] Task: Build Weight Dashboard and category progress bar charts [3886c50]
     - [x] Write component tests for the 4 key metrics and category progress bars
     - [x] Implement React components for the Weight Dashboard and horizontal breakdown bars
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: React Weight Dashboard and Breakdown Chart' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: React Weight Dashboard and Breakdown Chart' (Protocol in workflow.md) [d8b680a]
 
 ## Phase 3: UI Controls Integration and App Coordination
 
