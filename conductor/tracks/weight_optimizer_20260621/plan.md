@@ -9,9 +9,9 @@
 
 ## Phase 2: React Weight Dashboard and Breakdown Chart
 
-- [ ] Task: Build Weight Dashboard and category progress bar charts
-    - [ ] Write component tests for the 4 key metrics and category progress bars
-    - [ ] Implement React components for the Weight Dashboard and horizontal breakdown bars
+- [x] Task: Build Weight Dashboard and category progress bar charts [3886c50]
+    - [x] Write component tests for the 4 key metrics and category progress bars
+    - [x] Implement React components for the Weight Dashboard and horizontal breakdown bars
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: React Weight Dashboard and Breakdown Chart' (Protocol in workflow.md)
 
 ## Phase 3: UI Controls Integration and App Coordination
