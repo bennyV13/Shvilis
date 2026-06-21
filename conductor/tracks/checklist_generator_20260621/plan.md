@@ -16,9 +16,9 @@
 
 ## Phase 3: React Checklist UI Components
 
-- [ ] Task: Build Trip Profile Form component
-    - [ ] Write unit and component tests for Profile Form rendering, submission, and validation
-    - [ ] Implement React component for the trip profile inputs (weather, duration, terrain, group size)
+- [x] Task: Build Trip Profile Form component [2a03043]
+    - [x] Write unit and component tests for Profile Form rendering, submission, and validation
+    - [x] Implement React component for the trip profile inputs (weather, duration, terrain, group size)
 - [ ] Task: Build Checklist Category and Item list component
     - [ ] Write component tests for checklist display, custom category addition, custom item addition, quantity updates, and packed toggle
     - [ ] Implement React layout for displaying the checklist categories, adding custom categories/items, and inline edits
