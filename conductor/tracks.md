@@ -19,7 +19,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Sentry Integration**
+- [x] **Track: Sentry Integration**
   *Link: [./tracks/sentry_integration_20260621/](./tracks/sentry_integration_20260621/)*
 
 
