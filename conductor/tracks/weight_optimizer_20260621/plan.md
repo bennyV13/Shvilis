@@ -14,9 +14,9 @@
     - [x] Implement React components for the Weight Dashboard and horizontal breakdown bars
 - [x] Task: Conductor - User Manual Verification 'Phase 2: React Weight Dashboard and Breakdown Chart' (Protocol in workflow.md) [d8b680a]
 
-## Phase 3: UI Controls Integration and App Coordination
+## Phase 3: UI Controls Integration and App Coordination [checkpoint: 636a153]
 
 - [x] Task: Integrate worn/consumable controls in Checklist and link App state [5f375b6]
     - [x] Write integration tests for Worn/Consumable toggles and Meal Planner food weight sync
     - [x] Implement toggle controls in Checklist UI and coordinate state and rendering in App.tsx
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Controls Integration and App Coordination' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: UI Controls Integration and App Coordination' (Protocol in workflow.md) [636a153]
