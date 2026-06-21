@@ -8,6 +8,8 @@ interface ChecklistProps {
   onUpdateQuantity: (itemId: string, quantity: number) => void;
   onAddCustomItem: (name: string, category: string, quantity: number) => void;
   onAddCustomCategory: (categoryName: string) => void;
+  onUpdateWeight?: (itemId: string, weightGrams: number) => void;
+  onAssignMember?: (itemId: string, memberId: string) => void;
   groupSize: number;
 }
 
@@ -18,6 +20,8 @@ export const Checklist: React.FC<ChecklistProps> = ({
   onUpdateQuantity,
   onAddCustomItem,
   onAddCustomCategory,
+  onUpdateWeight,
+  onAssignMember,
   groupSize,
 }) => {
   const [newItemNames, setNewItemNames] = useState<Record<string, string>>({});
@@ -48,8 +52,30 @@ export const Checklist: React.FC<ChecklistProps> = ({
     }
   };
 
+  // Calculate total packed weight
+  const totalPackedWeightGrams = items
+    .filter((item) => item.isPacked && item.linkedGearWeightGrams)
+    .reduce((sum, item) => sum + (item.linkedGearWeightGrams || 0) * item.quantity, 0);
+
+  const totalPackedWeightKg = (totalPackedWeightGrams / 1000).toFixed(2);
+
   return (
     <div className="space-y-8">
+      {/* Weight Summary Card */}
+      <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            Total Packed Base Weight
+          </h4>
+          <p className="text-2xl font-extrabold text-emerald-400 mt-1 font-mono">
+            {totalPackedWeightKg} kg
+          </p>
+        </div>
+        <div className="text-xs text-slate-500 max-w-sm">
+          Calculates the total weight of all packed gear. Adjust gear weights individually in the checklist below.
+        </div>
+      </div>
+
       {/* Add Custom Category Form */}
       <form
         onSubmit={handleAddCategorySubmit}
@@ -103,10 +129,11 @@ export const Checklist: React.FC<ChecklistProps> = ({
                   {categoryItems.map((item) => (
                     <div
                       key={item.id}
-                      className={`flex items-center justify-between py-3 gap-4 transition-all ${
+                      className={`flex flex-col sm:flex-row sm:items-center justify-between py-3 gap-3 transition-all ${
                         item.isPacked ? 'opacity-60' : ''
                       }`}
                     >
+                      {/* Name & Checkbox */}
                       <div className="flex items-center space-x-3 flex-1 min-w-0">
                         <input
                           type="checkbox"
@@ -124,35 +151,75 @@ export const Checklist: React.FC<ChecklistProps> = ({
                           {item.name}
                         </label>
                         {item.isRequiredByRules && (
-                          <span className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded font-medium">
+                          <span className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded font-medium shrink-0">
                             Rec
                           </span>
                         )}
                       </div>
 
-                      {/* Quantity and Controls */}
-                      <div className="flex items-center space-x-2">
-                        <button
-                          type="button"
-                          onClick={() => onUpdateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                          aria-label="Decrease quantity"
-                          title="Decrease quantity"
-                          className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition text-sm"
-                        >
-                          -
-                        </button>
-                        <span className="w-8 text-center text-xs font-semibold text-slate-300 font-mono">
-                          {item.quantity}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                          aria-label="Increase quantity"
-                          title="Increase quantity"
-                          className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition text-sm"
-                        >
-                          +
-                        </button>
+                      {/* Controls (Weight, Member select, Quantity) */}
+                      <div className="flex items-center justify-end gap-3 flex-wrap sm:flex-nowrap">
+                        {/* Weight optimizer input */}
+                        <div className="flex items-center space-x-1">
+                          <input
+                            type="number"
+                            placeholder="g"
+                            aria-label={`Weight of ${item.name} in grams`}
+                            value={item.linkedGearWeightGrams || ''}
+                            onChange={(e) => {
+                              const val = parseInt(e.target.value, 10);
+                              onUpdateWeight?.(item.id, isNaN(val) ? 0 : val);
+                            }}
+                            className="w-16 bg-slate-950/60 border border-slate-800 rounded px-2 py-1 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/50 text-right font-mono"
+                          />
+                          <span className="text-[10px] text-slate-500 font-mono">g</span>
+                        </div>
+
+                        {/* Member assignment dropdown */}
+                        {groupSize > 1 && (
+                          <select
+                            value={item.assignedToMemberId || ''}
+                            onChange={(e) => onAssignMember?.(item.id, e.target.value)}
+                            aria-label={`Assign ${item.name} to member`}
+                            className="bg-slate-950/60 border border-slate-800 rounded px-2 py-1 text-xs text-slate-300 focus:outline-none focus:border-emerald-500/50"
+                          >
+                            <option value="">Unassigned</option>
+                            <option value="1">Organizer</option>
+                            {Array.from({ length: groupSize - 1 }, (_, idx) => {
+                              const memberNum = idx + 2;
+                              return (
+                                <option key={memberNum} value={memberNum.toString()}>
+                                  Member {memberNum}
+                                </option>
+                              );
+                            })}
+                          </select>
+                        )}
+
+                        {/* Quantity controls */}
+                        <div className="flex items-center space-x-2">
+                          <button
+                            type="button"
+                            onClick={() => onUpdateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                            aria-label="Decrease quantity"
+                            title="Decrease quantity"
+                            className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition text-sm"
+                          >
+                            -
+                          </button>
+                          <span className="w-8 text-center text-xs font-semibold text-slate-300 font-mono">
+                            {item.quantity}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                            aria-label="Increase quantity"
+                            title="Increase quantity"
+                            className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-800 bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition text-sm"
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}

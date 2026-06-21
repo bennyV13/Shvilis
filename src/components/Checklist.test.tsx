@@ -142,4 +142,72 @@ describe('Checklist', () => {
 
     expect(handleAddCustomCategory).toHaveBeenCalledWith('Electronics');
   });
+
+  it('should display the correct total packed weight', () => {
+    const itemsWithWeights: ChecklistItem[] = [
+      { id: '1', name: 'Tent', category: 'group', quantity: 1, isRequiredByRules: true, isPacked: true, linkedGearWeightGrams: 2100 },
+      { id: '2', name: 'Stove', category: 'group', quantity: 1, isRequiredByRules: true, isPacked: true, linkedGearWeightGrams: 400 },
+      { id: '3', name: 'Sleeping Bag', category: 'sleep', quantity: 1, isRequiredByRules: true, isPacked: false, linkedGearWeightGrams: 1100 },
+    ];
+    render(
+      <Checklist
+        items={itemsWithWeights}
+        customCategories={[]}
+        onTogglePacked={vi.fn()}
+        onUpdateQuantity={vi.fn()}
+        onAddCustomItem={vi.fn()}
+        onAddCustomCategory={vi.fn()}
+        groupSize={1}
+      />
+    );
+
+    expect(screen.getByText(/2.50\s*kg/i)).toBeDefined();
+  });
+
+  it('should call onUpdateWeight when changing item weight', () => {
+    const handleUpdateWeight = vi.fn();
+    render(
+      <Checklist
+        items={mockItems}
+        customCategories={[]}
+        onTogglePacked={vi.fn()}
+        onUpdateQuantity={vi.fn()}
+        onAddCustomItem={vi.fn()}
+        onAddCustomCategory={vi.fn()}
+        onUpdateWeight={handleUpdateWeight}
+        groupSize={1}
+      />
+    );
+
+    const mapRow = screen.getByText('Map & Compass').closest('div')?.parentElement;
+    const weightInput = mapRow?.querySelector('input[type="number"]');
+    if (!weightInput) throw new Error('Weight input not found');
+    fireEvent.change(weightInput, { target: { value: '150' } });
+
+    expect(handleUpdateWeight).toHaveBeenCalledWith('1', 150);
+  });
+
+  it('should show member assignment dropdown if groupSize > 1 and call onAssignMember', () => {
+    const handleAssignMember = vi.fn();
+    render(
+      <Checklist
+        items={mockItems}
+        customCategories={[]}
+        onTogglePacked={vi.fn()}
+        onUpdateQuantity={vi.fn()}
+        onAddCustomItem={vi.fn()}
+        onAddCustomCategory={vi.fn()}
+        onAssignMember={handleAssignMember}
+        groupSize={3}
+      />
+    );
+
+    const mapRow = screen.getByText('Map & Compass').closest('div')?.parentElement;
+    const select = mapRow?.querySelector('select');
+    if (!select) throw new Error('Assignment dropdown not found');
+    
+    fireEvent.change(select, { target: { value: '2' } });
+
+    expect(handleAssignMember).toHaveBeenCalledWith('1', '2');
+  });
 });
