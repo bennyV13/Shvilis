@@ -1,9 +1,9 @@
 # Implementation Plan - Sentry Integration
 
-## Phase 1: Installation and Env Configuration [checkpoint: ]
-- [ ] Task: Install `@sentry/react` and `@sentry/vite-plugin` dependencies
-- [ ] Task: Configure project environment variables template (`.env.example`) with Sentry variables
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Installation and Env Configuration' (Protocol in workflow.md)
+## Phase 1: Installation and Env Configuration [checkpoint: 2b6a0a1]
+- [x] Task: Install `@sentry/react` and `@sentry/vite-plugin` dependencies (5ba5bf4)
+- [x] Task: Configure project environment variables template (`.env.example`) with Sentry variables (5ba5bf4)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Installation and Env Configuration' (Protocol in workflow.md) (2b6a0a1)
 
 ## Phase 2: Sentry Client Initialization [checkpoint: ]
 - [ ] Task: Write failing unit tests for Sentry client initialization utility (`src/instrument.test.ts`)
