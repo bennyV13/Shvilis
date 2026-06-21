@@ -9,9 +9,9 @@
 
 ## Phase 2: Meal Calculation Logic and Utilities
 
-- [ ] Task: Implement nutritive summation and efficiency calculators
-    - [ ] Write unit tests for meal plan nutritional calculation and calorie-to-weight density functions
-    - [ ] Implement calculation utilities for portions, total calories, macronutrients, and weight densities
+- [x] Task: Implement nutritive summation and efficiency calculators [9881af2]
+    - [x] Write unit tests for meal plan nutritional calculation and calorie-to-weight density functions
+    - [x] Implement calculation utilities for portions, total calories, macronutrients, and weight densities
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Meal Calculation Logic and Utilities' (Protocol in workflow.md)
 
 ## Phase 3: React Meal Planner UI Components
