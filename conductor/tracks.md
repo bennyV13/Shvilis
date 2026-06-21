@@ -14,5 +14,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Gear Weight Optimizer**
+- [~] **Track: Gear Weight Optimizer**
   *Link: [./tracks/weight_optimizer_20260621/](./tracks/weight_optimizer_20260621/)*
