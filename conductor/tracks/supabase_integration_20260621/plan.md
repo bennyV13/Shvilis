@@ -1,10 +1,10 @@
 # Implementation Plan - Supabase Users and Vercel Deployment
 
-## Phase 1: Database Schemas & Supabase Client Initialization
+## Phase 1: Database Schemas & Supabase Client Initialization [checkpoint: b27fd87]
 - [x] Task: Write failing tests for Supabase client configuration and initialization (3a31c0d)
 - [x] Task: Create PostgreSQL database migrations under `supabase/migrations/` with Row-Level Security (RLS) enabled (c650514)
 - [x] Task: Implement Supabase client setup (`src/lib/supabase.ts`) to pass the tests (a9b29ca)
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Database Schemas & Supabase Client Initialization' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Database Schemas & Supabase Client Initialization' (Protocol in workflow.md) (b27fd87)
 
 ## Phase 2: Authentication Frontend & Session Management
 - [ ] Task: Write failing tests for AuthContext and auth forms
