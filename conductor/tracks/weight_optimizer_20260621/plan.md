@@ -1,0 +1,22 @@
+# Plan - Gear Weight Optimizer
+
+## Phase 1: Domain Extensions and Weight Calculation Utilities
+
+- [ ] Task: Extend ChecklistItem type and implement utility functions
+    - [ ] Write unit tests for weight calculators (base, consumable, worn, skin-out) and Meal Planner food weight integration
+    - [ ] Implement data structures (isWorn, isConsumable on ChecklistItem) and core utility calculators
+- [ ] Task: Conductor - User Manual Verification 'Phase 1: Domain Extensions and Weight Calculation Utilities' (Protocol in workflow.md)
+
+## Phase 2: React Weight Dashboard and Breakdown Chart
+
+- [ ] Task: Build Weight Dashboard and category progress bar charts
+    - [ ] Write component tests for the 4 key metrics and category progress bars
+    - [ ] Implement React components for the Weight Dashboard and horizontal breakdown bars
+- [ ] Task: Conductor - User Manual Verification 'Phase 2: React Weight Dashboard and Breakdown Chart' (Protocol in workflow.md)
+
+## Phase 3: UI Controls Integration and App Coordination
+
+- [ ] Task: Integrate worn/consumable controls in Checklist and link App state
+    - [ ] Write integration tests for Worn/Consumable toggles and Meal Planner food weight sync
+    - [ ] Implement toggle controls in Checklist UI and coordinate state and rendering in App.tsx
+- [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Controls Integration and App Coordination' (Protocol in workflow.md)

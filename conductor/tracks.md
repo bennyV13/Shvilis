@@ -11,3 +11,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [x] **Track: Intelligent Checklist Generator**
   *Link: [./tracks/checklist_generator_20260621/](./tracks/checklist_generator_20260621/)*
+
+---
+
+- [ ] **Track: Gear Weight Optimizer**
+  *Link: [./tracks/weight_optimizer_20260621/](./tracks/weight_optimizer_20260621/)*
