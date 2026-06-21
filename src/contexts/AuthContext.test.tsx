@@ -1,4 +1,3 @@
-import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
 import { AuthProvider, useAuth } from './AuthContext';
@@ -8,7 +7,7 @@ import { AuthForms } from '../components/AuthForms';
 const mockSignInWithPassword = vi.fn();
 const mockSignUp = vi.fn();
 const mockSignOut = vi.fn();
-const mockOnAuthStateChange = vi.fn(() => ({
+const mockOnAuthStateChange = vi.fn((_event?: unknown, _session?: unknown) => ({
   data: { subscription: { unsubscribe: vi.fn() } },
 }));
 
@@ -17,10 +16,10 @@ vi.mock('../lib/supabase', () => {
     supabase: {
       auth: {
         getSession: vi.fn(() => Promise.resolve({ data: { session: null }, error: null })),
-        onAuthStateChange: (...args: unknown[]) => mockOnAuthStateChange(...args),
-        signInWithPassword: (...args: unknown[]) => mockSignInWithPassword(...args),
-        signUp: (...args: unknown[]) => mockSignUp(...args),
-        signOut: (...args: unknown[]) => mockSignOut(...args),
+        onAuthStateChange: (event: unknown, session: unknown) => mockOnAuthStateChange(event, session),
+        signInWithPassword: (credentials: unknown) => mockSignInWithPassword(credentials),
+        signUp: (credentials: unknown) => mockSignUp(credentials),
+        signOut: () => mockSignOut(),
       },
     },
   };
