@@ -7,6 +7,7 @@ import { AuthForms } from '../components/AuthForms';
 const mockSignInWithPassword = vi.fn();
 const mockSignUp = vi.fn();
 const mockSignOut = vi.fn();
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockOnAuthStateChange = vi.fn((_event?: unknown, _session?: unknown) => ({
   data: { subscription: { unsubscribe: vi.fn() } },
 }));
