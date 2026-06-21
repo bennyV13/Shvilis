@@ -1,0 +1,23 @@
+- generic [ref=e4]:
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - heading "Shvilis" [level=1] [ref=e7]
+      - paragraph [ref=e8]: "Trails & Paths: Smart Packing & Preparation Assistant"
+    - generic [ref=e9]: Offline / Guest Mode
+  - generic [ref=e11]:
+    - button "Meal Planner" [ref=e12] [cursor=pointer]
+    - button "Gear Checklist" [ref=e13] [cursor=pointer]
+    - button "Sign In" [ref=e14] [cursor=pointer]
+  - generic [ref=e117]:
+    - generic [ref=e118]:
+      - heading "Begin Your Journey" [level=2] [ref=e131]
+      - paragraph [ref=e120]: Create an account to save your trails, checklists, and meals.
+    - generic [ref=e121]:
+      - generic [ref=e122]:
+        - generic [ref=e123]: Email Address
+        - textbox "Email Address" [ref=e124]
+      - generic [ref=e125]:
+        - generic [ref=e126]: Password
+        - textbox "Password" [ref=e127]
+      - button "Create Account" [ref=e132] [cursor=pointer]
+    - button "Already have an account? Sign In" [active] [ref=e133] [cursor=pointer]

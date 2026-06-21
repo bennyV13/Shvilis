@@ -19,6 +19,6 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Supabase Users and Vercel Deployment**
+- [~] **Track: Supabase Users and Vercel Deployment**
   *Link: [./tracks/supabase_integration_20260621/](./tracks/supabase_integration_20260621/)*
 

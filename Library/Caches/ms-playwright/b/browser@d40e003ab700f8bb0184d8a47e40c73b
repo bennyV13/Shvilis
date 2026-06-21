@@ -1,0 +1,34 @@
+{
+  "playwrightVersion": "1.60.0-alpha-1777566615000",
+  "playwrightLib": "/Users/user/.nvm/versions/node/v24.11.0/lib/node_modules/@playwright/mcp/node_modules/playwright-core",
+  "title": "antigravity-client",
+  "browser": {
+    "guid": "browser@d40e003ab700f8bb0184d8a47e40c73b",
+    "browserName": "chromium",
+    "launchOptions": {
+      "channel": "chrome",
+      "args": [
+        "--disable-blink-features=AutomationControlled"
+      ],
+      "ignoreAllDefaultArgs": false,
+      "ignoreDefaultArgs": [
+        "--disable-extensions"
+      ],
+      "handleSIGINT": false,
+      "handleSIGTERM": false,
+      "timeout": 180000,
+      "headless": true,
+      "tracesDir": "/Users/user/Developer/ai-apps/Shvilis/.playwright-mcp/traces",
+      "noDefaultViewport": false,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "selectorEngines": [],
+      "userDataDir": "/Users/user/Developer/ai-apps/Shvilis/Library/Caches/ms-playwright/mcp-chrome-fd940ad"
+    },
+    "userDataDir": "/Users/user/Developer/ai-apps/Shvilis/Library/Caches/ms-playwright/mcp-chrome-fd940ad"
+  },
+  "endpoint": "/var/folders/0k/s3_tm2s15b906rn5mm467rl40000gn/T/pw-12dea96f/browser/browser@d40e00.sock",
+  "workspaceDir": "/Users/user/Developer/ai-apps/Shvilis"
+}
