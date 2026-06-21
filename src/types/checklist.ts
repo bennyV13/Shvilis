@@ -14,6 +14,8 @@ export interface ChecklistItem {
   isPacked: boolean;
   assignedToMemberId?: string;
   linkedGearWeightGrams?: number;
+  isWorn?: boolean;
+  isConsumable?: boolean;
 }
 
 export interface ChecklistRule {
