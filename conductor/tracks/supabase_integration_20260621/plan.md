@@ -2,7 +2,7 @@
 
 ## Phase 1: Database Schemas & Supabase Client Initialization
 - [x] Task: Write failing tests for Supabase client configuration and initialization (3a31c0d)
-- [ ] Task: Create PostgreSQL database migrations under `supabase/migrations/` with Row-Level Security (RLS) enabled
+- [x] Task: Create PostgreSQL database migrations under `supabase/migrations/` with Row-Level Security (RLS) enabled (c650514)
 - [ ] Task: Implement Supabase client setup (`src/lib/supabase.ts`) to pass the tests
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Database Schemas & Supabase Client Initialization' (Protocol in workflow.md)
 
