@@ -41,7 +41,7 @@ describe('supabaseSync data service', () => {
   it('should upsert trip profile on syncTripProfile', async () => {
     const { syncTripProfile } = await import('./supabaseSync');
     const profile = {
-      weather: ['sunny'],
+      weather: ['sunny'] as ('sunny' | 'rainy' | 'cold' | 'hot')[],
       durationDays: 3,
       terrain: 'trail' as const,
       groupSize: 2,
