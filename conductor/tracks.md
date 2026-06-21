@@ -16,3 +16,9 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [x] **Track: Gear Weight Optimizer**
   *Link: [./tracks/weight_optimizer_20260621/](./tracks/weight_optimizer_20260621/)*
+
+---
+
+- [ ] **Track: Supabase Users and Vercel Deployment**
+  *Link: [./tracks/supabase_integration_20260621/](./tracks/supabase_integration_20260621/)*
+
