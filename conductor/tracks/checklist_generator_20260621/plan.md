@@ -2,9 +2,9 @@
 
 ## Phase 1: Domain Models and Local Storage Helpers
 
-- [ ] Task: Initialize checklist types and localStorage storage helpers
-    - [ ] Write unit tests for loading/saving trip profiles, checklist items, custom categories, and custom items
-    - [ ] Implement checklist schemas, default gear rules registry, and localStorage helpers (including defaults generation)
+- [x] Task: Initialize checklist types and localStorage storage helpers [97f990a]
+    - [x] Write unit tests for loading/saving trip profiles, checklist items, custom categories, and custom items
+    - [x] Implement checklist schemas, default gear rules registry, and localStorage helpers (including defaults generation)
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Domain Models and Local Storage Helpers' (Protocol in workflow.md)
 
 ## Phase 2: Dynamic Generation Engine and Rule Utilities
