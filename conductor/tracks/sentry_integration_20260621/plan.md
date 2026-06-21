@@ -17,8 +17,8 @@
 - [x] Task: Verify that all tests pass and meet coverage requirements (a9fa7f7)
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Error Boundary & Integration' (Protocol in workflow.md) (ab047dc)
 
-## Phase 4: Vite Plugin Configuration & QA Check [checkpoint: ]
-- [ ] Task: Add `@sentry/vite-plugin` integration and enable sourcemaps in `vite.config.ts`
-- [ ] Task: Verify production build passes and runs correctly locally (`npm run build`)
-- [ ] Task: Conduct a final QA check (linting, TypeScript types, and formatting checks)
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Vite Plugin Configuration & QA Check' (Protocol in workflow.md)
+## Phase 4: Vite Plugin Configuration & QA Check [checkpoint: ca9671d]
+- [x] Task: Add `@sentry/vite-plugin` integration and enable sourcemaps in `vite.config.ts` (08dfd31)
+- [x] Task: Verify production build passes and runs correctly locally (`npm run build`) (08dfd31)
+- [x] Task: Conduct a final QA check (linting, TypeScript types, and formatting checks) (08dfd31)
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Vite Plugin Configuration & QA Check' (Protocol in workflow.md) (ca9671d)
