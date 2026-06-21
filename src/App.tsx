@@ -29,8 +29,14 @@ import { TripProfileForm } from './components/TripProfileForm';
 import { Checklist } from './components/Checklist';
 import type { TripProfile, ChecklistItem } from './types/checklist';
 
+// Weight Optimizer imports
+import { calculateGearWeights } from './utils/weightCalculator';
+import { WeightDashboard } from './components/WeightDashboard';
+
 const LOCAL_PLANS_KEY = 'shvilis_meal_plans';
 const QUANTITY_OVERRIDES_KEY = 'shvilis_quantity_overrides';
+const WORN_STATES_KEY = 'shvilis_worn_states';
+const CONSUMABLE_STATES_KEY = 'shvilis_consumable_states';
 
 function App() {
   // Tabs state
@@ -60,6 +66,24 @@ function App() {
   const [quantityOverrides, setQuantityOverrides] = useState<Record<string, number>>(() => {
     try {
       const raw = localStorage.getItem(QUANTITY_OVERRIDES_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  // Worn and Consumable overrides for default rules items
+  const [wornStates, setWornStates] = useState<Record<string, boolean>>(() => {
+    try {
+      const raw = localStorage.getItem(WORN_STATES_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  });
+  const [consumableStates, setConsumableStates] = useState<Record<string, boolean>>(() => {
+    try {
+      const raw = localStorage.getItem(CONSUMABLE_STATES_KEY);
       return raw ? JSON.parse(raw) : {};
     } catch {
       return {};
@@ -134,7 +158,29 @@ function App() {
     setWeights(getLinkedWeights());
   };
 
-  // Generate checklist with current state and apply quantity overrides
+  const handleToggleWorn = (itemId: string, isWorn: boolean) => {
+    if (itemId.startsWith('custom-item-')) {
+      updateCustomItem(itemId, { isWorn });
+      setCustomItems(getCustomItems());
+    } else {
+      const updated = { ...wornStates, [itemId]: isWorn };
+      setWornStates(updated);
+      localStorage.setItem(WORN_STATES_KEY, JSON.stringify(updated));
+    }
+  };
+
+  const handleToggleConsumable = (itemId: string, isConsumable: boolean) => {
+    if (itemId.startsWith('custom-item-')) {
+      updateCustomItem(itemId, { isConsumable });
+      setCustomItems(getCustomItems());
+    } else {
+      const updated = { ...consumableStates, [itemId]: isConsumable };
+      setConsumableStates(updated);
+      localStorage.setItem(CONSUMABLE_STATES_KEY, JSON.stringify(updated));
+    }
+  };
+
+  // Generate checklist with current state
   const baseGeneratedChecklist = generateChecklist(
     profile,
     customItems,
@@ -144,12 +190,21 @@ function App() {
     weights
   );
 
-  const generatedItems = baseGeneratedChecklist.map((item) => ({
-    ...item,
-    quantity: quantityOverrides[item.id] !== undefined ? quantityOverrides[item.id] : item.quantity,
-  }));
+  // Apply local quantity, worn, and consumable overrides
+  const generatedItems = baseGeneratedChecklist.map((item) => {
+    const isCustom = item.id.startsWith('custom-item-');
+    return {
+      ...item,
+      quantity: quantityOverrides[item.id] !== undefined ? quantityOverrides[item.id] : item.quantity,
+      isWorn: isCustom ? item.isWorn : (wornStates[item.id] || false),
+      isConsumable: isCustom ? item.isConsumable : (consumableStates[item.id] || false),
+    };
+  });
 
   const tripTotals = calculateTripNutrients(plans, foods);
+
+  // Calculate detailed gear weights, integrating Meal Planner total food weight
+  const gearWeightTotals = calculateGearWeights(generatedItems, tripTotals.weightGrams);
 
   return (
     <div className="min-h-screen bg-[#0f1115] text-slate-100 px-4 py-8 md:px-8">
@@ -251,10 +306,11 @@ function App() {
 
         {/* Tab Content: Checklist */}
         {activeTab === 'checklist' && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start animate-fade-in">
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            {/* Sidebar with Profile Form and Weight Dashboard */}
+            <div className="lg:col-span-1 space-y-8">
               <TripProfileForm profile={profile} onChange={handleProfileChange} />
+              <WeightDashboard totals={gearWeightTotals} />
             </div>
 
             {/* Checklist */}
@@ -268,6 +324,8 @@ function App() {
                 onAddCustomCategory={handleAddCustomCategory}
                 onAssignMember={handleAssignMember}
                 onUpdateWeight={handleUpdateWeight}
+                onToggleWorn={handleToggleWorn}
+                onToggleConsumable={handleToggleConsumable}
                 groupSize={profile.groupSize}
               />
             </div>
