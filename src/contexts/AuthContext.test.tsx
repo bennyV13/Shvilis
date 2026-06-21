@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
 import { AuthProvider, useAuth } from './AuthContext';
 import { AuthForms } from '../components/AuthForms';
 
@@ -17,10 +17,10 @@ vi.mock('../lib/supabase', () => {
     supabase: {
       auth: {
         getSession: vi.fn(() => Promise.resolve({ data: { session: null }, error: null })),
-        onAuthStateChange: (...args: any[]) => mockOnAuthStateChange(...args),
-        signInWithPassword: (...args: any[]) => mockSignInWithPassword(...args),
-        signUp: (...args: any[]) => mockSignUp(...args),
-        signOut: (...args: any[]) => mockSignOut(...args),
+        onAuthStateChange: (...args: unknown[]) => mockOnAuthStateChange(...args),
+        signInWithPassword: (...args: unknown[]) => mockSignInWithPassword(...args),
+        signUp: (...args: unknown[]) => mockSignUp(...args),
+        signOut: (...args: unknown[]) => mockSignOut(...args),
       },
     },
   };
@@ -48,6 +48,7 @@ const TestHookComponent = () => {
 
 describe('AuthContext and useAuth', () => {
   beforeEach(() => {
+    cleanup();
     vi.clearAllMocks();
   });
 
@@ -58,6 +59,8 @@ describe('AuthContext and useAuth', () => {
       </AuthProvider>
     );
 
+    // Wait for the async getSession to resolve and loading to become 'no'
+    await waitFor(() => expect(screen.getByTestId('loading').textContent).toBe('no'));
     expect(screen.getByTestId('user').textContent).toBe('guest');
   });
 
@@ -70,6 +73,7 @@ describe('AuthContext and useAuth', () => {
       </AuthProvider>
     );
 
+    await waitFor(() => expect(screen.getByTestId('loading').textContent).toBe('no'));
     fireEvent.click(screen.getByTestId('btn-login'));
     expect(mockSignInWithPassword).toHaveBeenCalledWith({
       email: 'test@example.com',
@@ -86,6 +90,7 @@ describe('AuthContext and useAuth', () => {
       </AuthProvider>
     );
 
+    await waitFor(() => expect(screen.getByTestId('loading').textContent).toBe('no'));
     fireEvent.click(screen.getByTestId('btn-signup'));
     expect(mockSignUp).toHaveBeenCalledWith({
       email: 'new@example.com',
@@ -102,18 +107,28 @@ describe('AuthContext and useAuth', () => {
       </AuthProvider>
     );
 
+    await waitFor(() => expect(screen.getByTestId('loading').textContent).toBe('no'));
     fireEvent.click(screen.getByTestId('btn-logout'));
-    expect(mockSignOut).toHaveBeenCalled();
+    await waitFor(() => expect(mockSignOut).toHaveBeenCalled());
   });
 });
 
 describe('AuthForms Component', () => {
-  it('should render sign-in form elements by default and switch to sign-up', () => {
+  beforeEach(() => {
+    cleanup();
+  });
+
+  it('should render sign-in form elements by default and switch to sign-up', async () => {
     render(
       <AuthProvider>
         <AuthForms />
       </AuthProvider>
     );
+
+    // Wait for auth initialization
+    await waitFor(() => {
+      expect(screen.queryByText(/processing.../i)).toBeNull();
+    });
 
     // Initial view: Sign In
     expect(screen.getByPlaceholderText('Email Address')).toBeDefined();
