@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import * as Sentry from '@sentry/react';
 import { getAllFoods, addCustomFood, deleteCustomFood, getDefaultFoods } from './utils/foodRegistry';
 import { calculateTripNutrients } from './utils/nutrition';
 import type { FoodItem } from './types/food';
@@ -544,9 +545,11 @@ function AppContent() {
 
 export function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <Sentry.ErrorBoundary fallback={<p className="text-red-400 p-4">Something went wrong. Sentry has been notified.</p>} showDialog>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </Sentry.ErrorBoundary>
   );
 }
 

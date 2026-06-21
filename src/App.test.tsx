@@ -15,6 +15,15 @@ vi.mock('./lib/supabase', () => {
   };
 });
 
+// Mock Sentry
+vi.mock('@sentry/react', () => {
+  return {
+    ErrorBoundary: ({ children, fallback }: { children: React.ReactNode, fallback?: React.ReactNode }) => (
+      <div data-testid="sentry-error-boundary" data-fallback={fallback ? 'yes' : 'no'}>{children}</div>
+    ),
+  };
+});
+
 describe('App Component', () => {
   beforeEach(() => {
     cleanup();
@@ -40,5 +49,10 @@ describe('App Component', () => {
 
     // Should render Checklist components (like weather form / pack base weight)
     expect(screen.getByText(/trip profile/i)).toBeDefined();
+  });
+
+  it('should wrap the main layout in Sentry ErrorBoundary', () => {
+    render(<App />);
+    expect(screen.getByTestId('sentry-error-boundary')).toBeDefined();
   });
 });
