@@ -25,6 +25,6 @@
 ## Phase 4: Vercel Deployment & Configuration
 - [x] Task: Create `vercel.json` config file for the project (8c0616d)
 - [x] Task: Configure project environment variables template (`.env.example`) (068ef8f)
-- [ ] Task: Verify production build passes and runs correctly locally (`npm run build`)
-- [ ] Task: Conduct a final QA check (linting, TypeScript types, and formatting checks)
+- [x] Task: Verify production build passes and runs correctly locally (`npm run build`) (8dde07c)
+- [x] Task: Conduct a final QA check (linting, TypeScript types, and formatting checks) (8dde07c)
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Vercel Deployment & Configuration' (Protocol in workflow.md)
