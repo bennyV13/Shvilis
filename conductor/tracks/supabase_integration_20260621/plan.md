@@ -7,7 +7,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Database Schemas & Supabase Client Initialization' (Protocol in workflow.md) (b27fd87)
 
 ## Phase 2: Authentication Frontend & Session Management
-- [ ] Task: Write failing tests for AuthContext and auth forms
+- [x] Task: Write failing tests for AuthContext and auth forms (172257f)
 - [ ] Task: Implement authentication context/hooks (`src/contexts/AuthContext.tsx`)
 - [ ] Task: Build UI components for Sign Up, Sign In, and Sign Out styled to match the dark hiking theme
 - [ ] Task: Verify unit tests pass and meet coverage requirements
