@@ -15,11 +15,11 @@
 
 ## Phase 3: Database Integration for Application Features
 - [x] Task: Write failing tests for online-first data access (trip profiles, checklist items, custom categories, meal plans, custom foods) (da162b4)
-- [ ] Task: Implement direct query / online-first database integration for Trip Profiles
-- [ ] Task: Implement direct query / online-first database integration for Gear Checklists and Custom Categories
-- [ ] Task: Implement direct query / online-first database integration for Meal Plans and Custom Foods
-- [ ] Task: Verify all features fall back gracefully to localStorage when offline or not logged in
-- [ ] Task: Ensure all tests pass and coverage is >80% for new files
+- [x] Task: Implement direct query / online-first database integration for Trip Profiles (d17cefd)
+- [x] Task: Implement direct query / online-first database integration for Gear Checklists and Custom Categories (d17cefd)
+- [x] Task: Implement direct query / online-first database integration for Meal Plans and Custom Foods (d17cefd)
+- [x] Task: Verify all features fall back gracefully to localStorage when offline or not logged in (d17cefd)
+- [x] Task: Ensure all tests pass and coverage is >80% for new files (d17cefd)
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Database Integration for Application Features' (Protocol in workflow.md)
 
 ## Phase 4: Vercel Deployment & Configuration
