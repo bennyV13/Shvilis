@@ -10,6 +10,8 @@ interface ChecklistProps {
   onAddCustomCategory: (categoryName: string) => void;
   onUpdateWeight?: (itemId: string, weightGrams: number) => void;
   onAssignMember?: (itemId: string, memberId: string) => void;
+  onToggleWorn?: (itemId: string, isWorn: boolean) => void;
+  onToggleConsumable?: (itemId: string, isConsumable: boolean) => void;
   groupSize: number;
 }
 
@@ -22,6 +24,8 @@ export const Checklist: React.FC<ChecklistProps> = ({
   onAddCustomCategory,
   onUpdateWeight,
   onAssignMember,
+  onToggleWorn,
+  onToggleConsumable,
   groupSize,
 }) => {
   const [newItemNames, setNewItemNames] = useState<Record<string, string>>({});
@@ -157,8 +161,34 @@ export const Checklist: React.FC<ChecklistProps> = ({
                         )}
                       </div>
 
-                      {/* Controls (Weight, Member select, Quantity) */}
+                      {/* Controls (Worn, Consumable, Weight, Member select, Quantity) */}
                       <div className="flex items-center justify-end gap-3 flex-wrap sm:flex-nowrap">
+                        {/* Worn toggle */}
+                        <label className="flex items-center space-x-1 text-[10px] text-slate-400 select-none cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={item.isWorn || false}
+                            onChange={(e) => onToggleWorn?.(item.id, e.target.checked)}
+                            aria-label="Worn"
+                            title="Worn while hiking"
+                            className="rounded border-slate-700 bg-slate-950 text-sky-500 focus:ring-sky-500/30 w-3.5 h-3.5 cursor-pointer"
+                          />
+                          <span>Worn</span>
+                        </label>
+
+                        {/* Consumable toggle */}
+                        <label className="flex items-center space-x-1 text-[10px] text-slate-400 select-none cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={item.isConsumable || false}
+                            onChange={(e) => onToggleConsumable?.(item.id, e.target.checked)}
+                            aria-label="Consumable"
+                            title="Consumable supply"
+                            className="rounded border-slate-700 bg-slate-950 text-amber-500 focus:ring-amber-500/30 w-3.5 h-3.5 cursor-pointer"
+                          />
+                          <span>Consumable</span>
+                        </label>
+
                         {/* Weight optimizer input */}
                         <div className="flex items-center space-x-1">
                           <input

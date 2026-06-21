@@ -210,4 +210,50 @@ describe('Checklist', () => {
 
     expect(handleAssignMember).toHaveBeenCalledWith('1', '2');
   });
+
+  it('should call onToggleWorn when worn checkbox is toggled', () => {
+    const handleToggleWorn = vi.fn();
+    render(
+      <Checklist
+        items={mockItems}
+        customCategories={[]}
+        onTogglePacked={vi.fn()}
+        onUpdateQuantity={vi.fn()}
+        onAddCustomItem={vi.fn()}
+        onAddCustomCategory={vi.fn()}
+        onToggleWorn={handleToggleWorn}
+        groupSize={1}
+      />
+    );
+
+    const mapRow = screen.getByText('Map & Compass').closest('div')?.parentElement;
+    const wornCheckbox = mapRow?.querySelector('input[aria-label="Worn"]');
+    if (!wornCheckbox) throw new Error('Worn checkbox not found');
+    fireEvent.click(wornCheckbox);
+
+    expect(handleToggleWorn).toHaveBeenCalledWith('1', true);
+  });
+
+  it('should call onToggleConsumable when consumable checkbox is toggled', () => {
+    const handleToggleConsumable = vi.fn();
+    render(
+      <Checklist
+        items={mockItems}
+        customCategories={[]}
+        onTogglePacked={vi.fn()}
+        onUpdateQuantity={vi.fn()}
+        onAddCustomItem={vi.fn()}
+        onAddCustomCategory={vi.fn()}
+        onToggleConsumable={handleToggleConsumable}
+        groupSize={1}
+      />
+    );
+
+    const mapRow = screen.getByText('Map & Compass').closest('div')?.parentElement;
+    const consumableCheckbox = mapRow?.querySelector('input[aria-label="Consumable"]');
+    if (!consumableCheckbox) throw new Error('Consumable checkbox not found');
+    fireEvent.click(consumableCheckbox);
+
+    expect(handleToggleConsumable).toHaveBeenCalledWith('1', true);
+  });
 });
