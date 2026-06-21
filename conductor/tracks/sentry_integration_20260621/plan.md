@@ -5,11 +5,11 @@
 - [x] Task: Configure project environment variables template (`.env.example`) with Sentry variables (5ba5bf4)
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Installation and Env Configuration' (Protocol in workflow.md) (2b6a0a1)
 
-## Phase 2: Sentry Client Initialization [checkpoint: ]
-- [ ] Task: Write failing unit tests for Sentry client initialization utility (`src/instrument.test.ts`)
-- [ ] Task: Implement Sentry client initialization in `src/instrument.ts` and import it at the top of `src/main.tsx`
-- [ ] Task: Verify unit tests pass and code coverage meets requirements (>80%)
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Sentry Client Initialization' (Protocol in workflow.md)
+## Phase 2: Sentry Client Initialization [checkpoint: 965e027]
+- [x] Task: Write failing unit tests for Sentry client initialization utility (`src/instrument.test.ts`) (dc9b317)
+- [x] Task: Implement Sentry client initialization in `src/instrument.ts` and import it at the top of `src/main.tsx` (dc9b317)
+- [x] Task: Verify unit tests pass and code coverage meets requirements (>80%) (dc9b317)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Sentry Client Initialization' (Protocol in workflow.md) (965e027)
 
 ## Phase 3: Error Boundary & Integration [checkpoint: ]
 - [ ] Task: Write failing tests verifying the presence of Sentry's ErrorBoundary in the React component tree
