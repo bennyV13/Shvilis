@@ -16,7 +16,7 @@
 
 ## Phase 3: UI Controls Integration and App Coordination
 
-- [ ] Task: Integrate worn/consumable controls in Checklist and link App state
-    - [ ] Write integration tests for Worn/Consumable toggles and Meal Planner food weight sync
-    - [ ] Implement toggle controls in Checklist UI and coordinate state and rendering in App.tsx
+- [x] Task: Integrate worn/consumable controls in Checklist and link App state [5f375b6]
+    - [x] Write integration tests for Worn/Consumable toggles and Meal Planner food weight sync
+    - [x] Implement toggle controls in Checklist UI and coordinate state and rendering in App.tsx
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Controls Integration and App Coordination' (Protocol in workflow.md)
