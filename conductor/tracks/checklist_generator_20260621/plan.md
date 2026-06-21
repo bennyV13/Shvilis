@@ -22,7 +22,7 @@
 - [x] Task: Build Checklist Category and Item list component [a09a09b]
     - [x] Write component tests for checklist display, custom category addition, custom item addition, quantity updates, and packed toggle
     - [x] Implement React layout for displaying the checklist categories, adding custom categories/items, and inline edits
-- [ ] Task: Build Group Assignment and Weight Integration component
-    - [ ] Write component tests for assigning items to group members and linking weight totals
-    - [ ] Implement member assignment controls and weight summing indicators on the checklist
+- [x] Task: Build Group Assignment and Weight Integration component [25796e8]
+    - [x] Write component tests for assigning items to group members and linking weight totals
+    - [x] Implement member assignment controls and weight summing indicators on the checklist
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: React Checklist UI Components' (Protocol in workflow.md)
