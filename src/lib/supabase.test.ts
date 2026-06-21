@@ -7,6 +7,7 @@ vi.mock('@supabase/supabase-js', () => {
       url,
       key,
       auth: {
+        getUser: vi.fn(() => Promise.resolve({ data: { user: null }, error: null })),
         getSession: vi.fn(),
         onAuthStateChange: vi.fn(() => ({ data: { subscription: { unsubscribe: vi.fn() } } })),
       },

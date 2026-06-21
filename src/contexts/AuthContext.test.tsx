@@ -16,6 +16,7 @@ vi.mock('../lib/supabase', () => {
   return {
     supabase: {
       auth: {
+        getUser: vi.fn(() => Promise.resolve({ data: { user: null }, error: null })),
         getSession: vi.fn(() => Promise.resolve({ data: { session: null }, error: null })),
         onAuthStateChange: (event: unknown, session: unknown) => mockOnAuthStateChange(event, session),
         signInWithPassword: (credentials: unknown) => mockSignInWithPassword(credentials),
