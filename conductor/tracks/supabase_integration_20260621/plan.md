@@ -14,7 +14,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Authentication Frontend & Session Management' (Protocol in workflow.md) (cce9b9c)
 
 ## Phase 3: Database Integration for Application Features
-- [ ] Task: Write failing tests for online-first data access (trip profiles, checklist items, custom categories, meal plans, custom foods)
+- [x] Task: Write failing tests for online-first data access (trip profiles, checklist items, custom categories, meal plans, custom foods) (da162b4)
 - [ ] Task: Implement direct query / online-first database integration for Trip Profiles
 - [ ] Task: Implement direct query / online-first database integration for Gear Checklists and Custom Categories
 - [ ] Task: Implement direct query / online-first database integration for Meal Plans and Custom Foods
