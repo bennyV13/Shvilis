@@ -1,4 +1,4 @@
-import { FoodItem } from '../types/food';
+import type { FoodItem } from '../types/food';
 
 export const DEFAULT_FOODS: FoodItem[] = [
   {

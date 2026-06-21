@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { FoodItem } from '../types/food';
-import { PlannedMealItem, DailyMealPlan } from '../types/meal';
+import type { FoodItem } from '../types/food';
+import type { PlannedMealItem, DailyMealPlan } from '../types/meal';
 import {
   calculateMealNutrients,
   calculateDailyNutrients,

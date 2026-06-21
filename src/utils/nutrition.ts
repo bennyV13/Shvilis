@@ -1,5 +1,5 @@
-import { FoodItem } from '../types/food';
-import { PlannedMealItem, DailyMealPlan, NutritionTotals, MacroRatios } from '../types/meal';
+import type { FoodItem } from '../types/food';
+import type { PlannedMealItem, DailyMealPlan, NutritionTotals, MacroRatios } from '../types/meal';
 
 export function calculateMealNutrients(items: PlannedMealItem[], foods: FoodItem[]): NutritionTotals {
   const totals: NutritionTotals = {
