@@ -28,4 +28,4 @@ Shvilis (Hebrew for "Trails" or "Paths") is a premium web application designed t
 
 ## Design Objectives
 - **Modern Hiking Aesthetic:** Sleek, high-contrast dark theme with mountain-inspired greens and earth tones. Clean, readable data tables for weight management, and progress indicators for packing state.
-- **Offline Capability:** A responsive, lightweight mobile view that allows hikers to check off items on the trail or at the trailhead, even without cell service.
+- **Offline & Cloud Sync:** A responsive, lightweight view that runs offline-first with localStorage, and automatically syncs to a secure Supabase backend when logged in to persist trip profiles, gear checklists, and meal plans across devices.
