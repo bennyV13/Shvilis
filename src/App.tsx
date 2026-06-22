@@ -58,6 +58,21 @@ function AppContent() {
   // Tabs state
   const [activeTab, setActiveTab] = useState<'meals' | 'checklist' | 'account'>('meals');
 
+  // Theme state
+  const [isLightMode, setIsLightMode] = useState(() => {
+    return localStorage.getItem('shvilis_theme') === 'light';
+  });
+
+  useEffect(() => {
+    if (isLightMode) {
+      document.documentElement.classList.add('theme-light');
+      localStorage.setItem('shvilis_theme', 'light');
+    } else {
+      document.documentElement.classList.remove('theme-light');
+      localStorage.setItem('shvilis_theme', 'dark');
+    }
+  }, [isLightMode]);
+
   // Meal Planner state
   const [foods, setFoods] = useState<FoodItem[]>(() => getAllFoods());
   const [plans, setPlans] = useState<DailyMealPlan[]>(() => {
@@ -425,13 +440,22 @@ function AppContent() {
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Header */}
         <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-800 pb-6">
-          <div>
-            <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 bg-clip-text text-transparent m-0 font-heading">
-              Shvilis
-            </h1>
-            <p className="text-slate-400 text-sm mt-1">
-              Trails & Paths: Smart Packing & Preparation Assistant
-            </p>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setIsLightMode(!isLightMode)}
+              className="text-2xl p-2 rounded-full hover:bg-slate-800 transition-colors"
+              title="Toggle Light/Dark Mode"
+            >
+              {isLightMode ? '🌙' : '☀️'}
+            </button>
+            <div>
+              <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 bg-clip-text text-transparent m-0 font-heading">
+                Shvilis
+              </h1>
+              <p className="text-slate-400 text-sm mt-1">
+                Trails & Paths: Smart Packing & Preparation Assistant
+              </p>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <button
