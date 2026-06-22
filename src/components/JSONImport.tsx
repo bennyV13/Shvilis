@@ -5,6 +5,46 @@ import { DEFAULT_RULES } from '../utils/checklistRegistry';
 import { useAuth } from '../contexts/AuthContext';
 import { syncCustomFood, syncChecklistItem, syncCustomCategory } from '../utils/supabaseSync';
 
+const LLM_PROMPT = `I am going to provide you with images or text containing outdoor gear and/or food nutrition labels. Your task is to extract this data and convert it into a strict JSON object that I can import into my hiking planner app. 
+
+Please follow these strict data conversion rules:
+
+FOR FOOD (Nutrition Labels):
+1. My app REQUIRES all nutritional data to be calculated "Per 100g". If the nutrition label provides data per serving, you MUST do the math to convert Calories, Protein, Fat, Carbohydrates, and Sodium to their per 100g equivalents.
+2. If any macronutrient (Protein, Fat, Carbs, Sodium) is missing or 0, output 0 for it. 
+
+FOR GEAR:
+1. Try to categorize gear into logical outdoor categories (e.g., "Shelter", "Sleep System", "Cooking", "Electronics", "Clothing", "First Aid", "Consumables"). 
+2. Ensure the weight is ALWAYS converted to grams (\`weightGrams\`). If the image shows ounces, multiply by 28.3495 and round to the nearest whole number. If it shows pounds, multiply by 453.592.
+3. If an item is worn on the body (like hiking boots or trekking poles), set \`"isWorn": true\`.
+4. If an item gets used up (like gas canisters, bug spray, or sunscreen), set \`"isConsumable": true\`.
+
+OUTPUT FORMAT:
+Provide ONLY the raw JSON object inside a code block. Do not add any conversational text before or after the JSON. Use the exact schema below. Omit the foods array if I only give you gear, and omit the gear array if I only give you food.
+
+{
+  "foods": [
+    {
+      "name": "Product Name (e.g., Clif Bar Peanut Butter)",
+      "caloriesPer100g": 400,
+      "proteinPer100g": 10,
+      "fatPer100g": 5,
+      "carbsPer100g": 60,
+      "sodiumPer100g": 150
+    }
+  ],
+  "gear": [
+    {
+      "name": "Item Name (e.g., Big Agnes Copper Spur)",
+      "category": "Shelter",
+      "weightGrams": 1400,
+      "quantity": 1,
+      "isWorn": false,
+      "isConsumable": false
+    }
+  ]
+}`;
+
 export const JSONImport: React.FC = () => {
   const [jsonStr, setJsonStr] = useState('');
   const [error, setError] = useState('');
@@ -103,6 +143,26 @@ export const JSONImport: React.FC = () => {
       >
         {loading ? 'Importing...' : 'Import JSON'}
       </button>
+
+      <details className="text-sm text-slate-400 group pt-4 border-t border-slate-800">
+        <summary className="cursor-pointer hover:text-slate-300 transition-colors list-none font-semibold flex items-center gap-2">
+          <span className="text-emerald-500 group-open:rotate-90 transition-transform">▶</span>
+          Need help formatting? Get the LLM Prompt
+        </summary>
+        <div className="mt-4 p-4 bg-slate-950 rounded-lg border border-slate-800 relative">
+          <button 
+            onClick={() => {
+              navigator.clipboard.writeText(LLM_PROMPT);
+              setSuccess('Prompt copied to clipboard!');
+              setTimeout(() => setSuccess(''), 3000);
+            }}
+            className="absolute top-3 right-3 px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs rounded transition-colors"
+          >
+            Copy Prompt
+          </button>
+          <pre className="whitespace-pre-wrap text-xs text-slate-300 font-mono mt-6">{LLM_PROMPT}</pre>
+        </div>
+      </details>
     </div>
   );
 };
