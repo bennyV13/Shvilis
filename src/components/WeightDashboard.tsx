@@ -33,7 +33,7 @@ export const WeightDashboard: React.FC<WeightDashboardProps> = ({ totals }) => {
       </h3>
 
       {/* Metrics Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         {/* Base Weight */}
         <div className="bg-slate-950/40 border border-slate-800/80 rounded-lg p-3 text-center">
           <span className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
