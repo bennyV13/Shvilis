@@ -186,6 +186,30 @@ function AppContent() {
     loadData();
   }, [user]);
 
+  const handleReportIssue = async () => {
+    const feedback = Sentry.getFeedback();
+    if (feedback) {
+      const replay = Sentry.getReplay();
+      if (replay) {
+        console.log('[Sentry] Flushing session replay for user feedback...');
+        try {
+          await replay.flush();
+        } catch (error) {
+          console.error('[Sentry] Failed to flush replay:', error);
+        }
+      }
+      try {
+        const form = await feedback.createForm();
+        form.appendToDom();
+        form.open();
+      } catch (error) {
+        console.error('[Sentry] Failed to create or open feedback form:', error);
+      }
+    } else {
+      console.warn('[Sentry] User Feedback integration not loaded');
+    }
+  };
+
   // Meal Planner handlers
   const handlePlansChange = (newPlans: DailyMealPlan[]) => {
     setPlans(newPlans);
@@ -409,9 +433,17 @@ function AppContent() {
               Trails & Paths: Smart Packing & Preparation Assistant
             </p>
           </div>
-          <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3.5 py-1.5 rounded-full text-xs font-semibold text-emerald-400">
-            <span className={`w-2 h-2 rounded-full ${user ? 'bg-emerald-400' : 'bg-amber-400'} animate-pulse`}></span>
-            {user ? 'Cloud Sync Active' : 'Offline / Guest Mode'}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleReportIssue}
+              className="px-3.5 py-1.5 text-xs font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-full transition-colors border border-slate-700"
+            >
+              Report Issue
+            </button>
+            <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3.5 py-1.5 rounded-full text-xs font-semibold text-emerald-400">
+              <span className={`w-2 h-2 rounded-full ${user ? 'bg-emerald-400' : 'bg-amber-400'} animate-pulse`}></span>
+              {user ? 'Cloud Sync Active' : 'Offline / Guest Mode'}
+            </div>
           </div>
         </header>
 
