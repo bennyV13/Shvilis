@@ -37,6 +37,7 @@ import { WeightDashboard } from './components/WeightDashboard';
 // Supabase and Auth imports
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { AuthForms } from './components/AuthForms';
+import { JSONImport } from './components/JSONImport';
 import {
   fetchUserData,
   syncTripProfile,
@@ -590,8 +591,9 @@ function AppContent() {
 
         {/* Tab Content: Account */}
         {activeTab === 'account' && (
-          <div className="max-w-md mx-auto py-8">
+          <div className="max-w-md mx-auto py-8 space-y-8">
             <AuthForms />
+            <JSONImport />
           </div>
         )}
       </div>
