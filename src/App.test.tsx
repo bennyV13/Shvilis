@@ -21,6 +21,7 @@ vi.mock('@sentry/react', () => {
     ErrorBoundary: ({ children, fallback }: { children: React.ReactNode, fallback?: React.ReactNode }) => (
       <div data-testid="sentry-error-boundary" data-fallback={fallback ? 'yes' : 'no'}>{children}</div>
     ),
+    setUser: vi.fn(),
   };
 });
 

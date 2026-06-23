@@ -1,4 +1,5 @@
 import type { FoodItem } from '../types/food';
+import { USDA_FOODS } from './usdaFoods';
 
 export const DEFAULT_FOODS: FoodItem[] = [
   {
@@ -66,7 +67,7 @@ export const DEFAULT_FOODS: FoodItem[] = [
 const LOCAL_STORAGE_KEY = 'shvilis_custom_foods';
 
 export function getDefaultFoods(): FoodItem[] {
-  return DEFAULT_FOODS;
+  return [...DEFAULT_FOODS, ...USDA_FOODS];
 }
 
 export function getCustomFoods(): FoodItem[] {
