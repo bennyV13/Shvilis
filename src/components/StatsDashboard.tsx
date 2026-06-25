@@ -52,11 +52,6 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({ totals, profile,
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-slate-950/40 border border-slate-800/80 rounded-xl p-4">
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Target Calories</p>
-          <input type="number" value={profile.targetCalories || ''} onChange={(e) => onChange({...profile, targetCalories: parseInt(e.target.value) || undefined})} className="w-full bg-transparent border-b border-slate-700 text-xl font-bold text-slate-100 font-mono focus:outline-none focus:border-emerald-500" placeholder="kcal" />
-          <p className="text-xs text-slate-500 mt-2">Current: {Math.round(totals.calories)}</p>
-        </div>
-        <div className="bg-slate-950/40 border border-slate-800/80 rounded-xl p-4">
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Target Protein</p>
           <input type="number" value={profile.targetProtein || ''} onChange={(e) => onChange({...profile, targetProtein: parseInt(e.target.value) || undefined})} className="w-full bg-transparent border-b border-slate-700 text-xl font-bold text-slate-100 font-mono focus:outline-none focus:border-emerald-500" placeholder="g" />
           <p className="text-xs text-slate-500 mt-2">Current: {Math.round(totals.protein)}</p>
@@ -70,6 +65,15 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({ totals, profile,
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Target Carbs</p>
           <input type="number" value={profile.targetCarbs || ''} onChange={(e) => onChange({...profile, targetCarbs: parseInt(e.target.value) || undefined})} className="w-full bg-transparent border-b border-slate-700 text-xl font-bold text-slate-100 font-mono focus:outline-none focus:border-emerald-500" placeholder="g" />
           <p className="text-xs text-slate-500 mt-2">Current: {Math.round(totals.carbs)}</p>
+        </div>
+        <div className="bg-slate-950/40 border border-slate-800/80 rounded-xl p-4">
+          <div className="flex justify-between items-center mb-1">
+            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Target Calories</p>
+            <button type="button" className="cursor-help bg-slate-800 text-slate-300 w-4 h-4 rounded-full flex items-center justify-center text-[10px]" title="Fat provides 9 calories per gram, while both protein and carbohydrates provide 4 calories per gram.">?</button>
+          </div>
+          <input type="number" value={profile.targetCalories || ''} onChange={(e) => onChange({...profile, targetCalories: parseInt(e.target.value) || undefined})} className="w-full bg-transparent border-b border-slate-700 text-xl font-bold text-slate-100 font-mono focus:outline-none focus:border-emerald-500" placeholder="kcal" />
+          <p className="text-xs text-slate-500 mt-2">Current: {Math.round(totals.calories)}</p>
+          <p className="text-xs text-slate-500 mt-1">Calculated: {(profile.targetFat || 0) * 9 + ((profile.targetProtein || 0) + (profile.targetCarbs || 0)) * 4}</p>
         </div>
       </div>
 
