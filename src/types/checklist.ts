@@ -7,6 +7,11 @@ export interface TripProfile {
   targetProtein?: number;
   targetFat?: number;
   targetCarbs?: number;
+  bmr?: number;
+  bodyWeight?: number;
+  packWeight?: number;
+  hours?: number;
+  met?: number;
 }
 
 export interface ChecklistItem {

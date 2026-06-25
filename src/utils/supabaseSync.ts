@@ -26,6 +26,15 @@ export async function fetchUserData(userId: string): Promise<UserDataPayload> {
       durationDays: tripData.duration_days,
       terrain: tripData.terrain as 'trail' | 'alpine' | 'desert' | 'forest',
       groupSize: tripData.group_size,
+      targetCalories: tripData.target_calories,
+      targetProtein: tripData.target_protein,
+      targetFat: tripData.target_fat,
+      targetCarbs: tripData.target_carbs,
+      bmr: tripData.bmr,
+      bodyWeight: tripData.body_weight,
+      packWeight: tripData.pack_weight,
+      hours: tripData.hours,
+      met: tripData.met,
     };
   }
 
@@ -128,6 +137,15 @@ export async function syncTripProfile(userId: string, profile: TripProfile): Pro
     duration_days: profile.durationDays,
     terrain: profile.terrain,
     group_size: profile.groupSize,
+    target_calories: profile.targetCalories,
+    target_protein: profile.targetProtein,
+    target_fat: profile.targetFat,
+    target_carbs: profile.targetCarbs,
+    bmr: profile.bmr,
+    body_weight: profile.bodyWeight,
+    pack_weight: profile.packWeight,
+    hours: profile.hours,
+    met: profile.met,
   };
 
   if (data?.id) {

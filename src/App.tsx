@@ -603,7 +603,7 @@ function AppContent() {
         {/* Tab Content: Calculator */}
         {activeTab === 'calculator' && (
           <div className="py-8">
-            <NutritionCalculator />
+            <NutritionCalculator profile={profile} onChange={handleProfileChange} />
           </div>
         )}
 

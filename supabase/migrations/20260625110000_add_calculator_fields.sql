@@ -1,0 +1,11 @@
+-- Add target macros and calculator state to trip_profiles
+ALTER TABLE public.trip_profiles 
+ADD COLUMN IF NOT EXISTS target_calories INTEGER,
+ADD COLUMN IF NOT EXISTS target_protein INTEGER,
+ADD COLUMN IF NOT EXISTS target_fat INTEGER,
+ADD COLUMN IF NOT EXISTS target_carbs INTEGER,
+ADD COLUMN IF NOT EXISTS bmr INTEGER,
+ADD COLUMN IF NOT EXISTS body_weight NUMERIC,
+ADD COLUMN IF NOT EXISTS pack_weight NUMERIC,
+ADD COLUMN IF NOT EXISTS hours NUMERIC,
+ADD COLUMN IF NOT EXISTS met NUMERIC;
