@@ -4,6 +4,9 @@ import { StatsDashboard } from './StatsDashboard';
 import type { NutritionTotals } from '../types/meal';
 
 describe('StatsDashboard', () => {
+  const mockProfile: any = { weather: [], durationDays: 1, terrain: 'trail', groupSize: 1 };
+  const mockOnChange = () => {};
+
   afterEach(() => {
     cleanup();
   });
@@ -18,7 +21,7 @@ describe('StatsDashboard', () => {
       weightGrams: 1200,
     };
 
-    render(<StatsDashboard totals={totals} />);
+    render(<StatsDashboard totals={totals} profile={mockProfile} onChange={mockOnChange} />);
 
     expect(screen.getByText(/1.20\s*kg/)).toBeDefined();
     expect(screen.getByText(/2500\s*kcal/)).toBeDefined();
@@ -35,7 +38,7 @@ describe('StatsDashboard', () => {
       weightGrams: 100, // 5 kcal/g
     };
 
-    render(<StatsDashboard totals={totals} />);
+    render(<StatsDashboard totals={totals} profile={mockProfile} onChange={mockOnChange} />);
 
     expect(screen.getByText(/5.00/)).toBeDefined();
     expect(screen.getByText(/High Weight Efficiency/i)).toBeDefined();
@@ -51,7 +54,7 @@ describe('StatsDashboard', () => {
       weightGrams: 100, // 1.2 kcal/g
     };
 
-    render(<StatsDashboard totals={totals} />);
+    render(<StatsDashboard totals={totals} profile={mockProfile} onChange={mockOnChange} />);
 
     expect(screen.getByText(/1.20/)).toBeDefined();
     expect(screen.getByText(/Low Weight Efficiency/i)).toBeDefined();

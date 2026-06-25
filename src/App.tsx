@@ -509,7 +509,7 @@ function AppContent() {
         {/* Tab Content: Meal Planner */}
         {activeTab === 'meals' && (
           <div className="space-y-8">
-            <StatsDashboard totals={tripTotals} />
+            <StatsDashboard totals={tripTotals} profile={profile} onChange={handleProfileChange} />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
               {/* Main scheduler */}

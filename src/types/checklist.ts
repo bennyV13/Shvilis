@@ -3,6 +3,10 @@ export interface TripProfile {
   durationDays: number;
   terrain: 'trail' | 'alpine' | 'desert' | 'forest';
   groupSize: number;
+  targetCalories?: number;
+  targetProtein?: number;
+  targetFat?: number;
+  targetCarbs?: number;
 }
 
 export interface ChecklistItem {
