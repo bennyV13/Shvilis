@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { NutritionTotals } from '../types/meal';
 import { calculateCaloricDensity, calculateMacroRatios } from '../utils/nutrition';
 
@@ -11,6 +11,7 @@ interface StatsDashboardProps {
 }
 
 export const StatsDashboard: React.FC<StatsDashboardProps> = ({ totals, profile, onChange }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
   const density = calculateCaloricDensity(totals.calories, totals.weightGrams);
   const weightKg = totals.weightGrams / 1000;
   const macros = calculateMacroRatios(totals.protein, totals.fat, totals.carbs);
@@ -66,11 +67,22 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({ totals, profile,
           <input type="number" value={profile.targetCarbs || ''} onChange={(e) => onChange({...profile, targetCarbs: parseInt(e.target.value) || undefined})} className="w-full bg-transparent border-b border-slate-700 text-xl font-bold text-slate-100 font-mono focus:outline-none focus:border-emerald-500" placeholder="g" />
           <p className="text-xs text-slate-500 mt-2">Current: {Math.round(totals.carbs)}</p>
         </div>
-        <div className="bg-slate-950/40 border border-slate-800/80 rounded-xl p-4">
+        <div className="bg-slate-950/40 border border-slate-800/80 rounded-xl p-4 relative">
           <div className="flex justify-between items-center mb-1">
             <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Target Calories</p>
-            <button type="button" className="cursor-help bg-slate-800 text-slate-300 w-4 h-4 rounded-full flex items-center justify-center text-[10px]" title="Fat provides 9 calories per gram, while both protein and carbohydrates provide 4 calories per gram.">?</button>
+            <button 
+              type="button" 
+              onClick={() => setShowTooltip(!showTooltip)}
+              className="cursor-pointer bg-slate-800 text-slate-300 w-4 h-4 rounded-full flex items-center justify-center text-[10px] transition-colors hover:bg-slate-700"
+            >
+              ?
+            </button>
           </div>
+          {showTooltip && (
+            <div className="absolute right-0 top-10 w-56 p-3 bg-slate-800 text-slate-200 text-xs rounded-lg shadow-xl z-10 border border-slate-700 leading-relaxed">
+              Fat provides 9 calories per gram, while both protein and carbohydrates provide 4 calories per gram.
+            </div>
+          )}
           <input type="number" value={profile.targetCalories || ''} onChange={(e) => onChange({...profile, targetCalories: parseInt(e.target.value) || undefined})} className="w-full bg-transparent border-b border-slate-700 text-xl font-bold text-slate-100 font-mono focus:outline-none focus:border-emerald-500" placeholder="kcal" />
           <p className="text-xs text-slate-500 mt-2">Current: {Math.round(totals.calories)}</p>
           <p className="text-xs text-slate-500 mt-1">Calculated: {(profile.targetFat || 0) * 9 + ((profile.targetProtein || 0) + (profile.targetCarbs || 0)) * 4}</p>
