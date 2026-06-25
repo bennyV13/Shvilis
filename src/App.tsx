@@ -33,6 +33,7 @@ import type { TripProfile, ChecklistItem } from './types/checklist';
 // Weight Optimizer imports
 import { calculateGearWeights } from './utils/weightCalculator';
 import { WeightDashboard } from './components/WeightDashboard';
+import { NutritionCalculator } from './components/NutritionCalculator';
 
 // Supabase and Auth imports
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -57,7 +58,7 @@ function AppContent() {
   const { user } = useAuth();
 
   // Tabs state
-  const [activeTab, setActiveTab] = useState<'meals' | 'checklist' | 'account'>('meals');
+  const [activeTab, setActiveTab] = useState<'meals' | 'checklist' | 'calculator' | 'account'>('meals');
 
   // Theme state
   const [isLightMode, setIsLightMode] = useState(() => {
@@ -495,6 +496,16 @@ function AppContent() {
             Gear Checklist
           </button>
           <button
+            onClick={() => setActiveTab('calculator')}
+            className={`px-6 py-3 text-sm font-semibold border-b-2 transition-all ${
+              activeTab === 'calculator'
+                ? 'border-emerald-400 text-emerald-400 font-bold'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            Calculator
+          </button>
+          <button
             onClick={() => setActiveTab('account')}
             className={`px-6 py-3 text-sm font-semibold border-b-2 transition-all ml-auto ${
               activeTab === 'account'
@@ -586,6 +597,13 @@ function AppContent() {
                 groupSize={profile.groupSize}
               />
             </div>
+          </div>
+        )}
+
+        {/* Tab Content: Calculator */}
+        {activeTab === 'calculator' && (
+          <div className="py-8">
+            <NutritionCalculator />
           </div>
         )}
 
